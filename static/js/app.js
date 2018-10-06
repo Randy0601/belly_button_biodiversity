@@ -3,8 +3,9 @@ function buildMetadata(sample) {
   // @TODO: Complete the following function that builds the metadata panel
   
   // Use `d3.json` to fetch the metadata for a sample
-  var url = `/samples/${sample}`;
-  d3.json(url).then(function(sample){
+  d3.json(`/metadata/${sample}`).then(function(sample) {
+
+    console.log(`Data returned: ${sample}`)
 
     // Use d3 to select the panel with id of `#sample-metadata`
     var sample_metadata = d3.select("#sample-metadata");
@@ -15,6 +16,7 @@ function buildMetadata(sample) {
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
     Object.entries(sample).map(function ([key, value]) {
+      console.log(`Key: ${key} and Value ${value}`);
       var row = sample_metadata.append("p");
       row.text(`${key}: ${value}`);
      });
@@ -24,8 +26,7 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
-  var url = `/samples/${sample}`;
-  d3.json(url).then(function(data) {
+  d3.json(`/samples/${sample}`).then(function(data) {
     // @TODO: Build a Bubble Chart using the sample data
     var x_values = data.otu_ids;
     var y_values = data.sample_values;
@@ -54,7 +55,7 @@ function buildCharts(sample) {
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
-    d3.json(url).then(function(data) {  
+    d3.json(`/samples/${sample}`).then(function(data) {  
       var pie_values = data.sample_values.slice(0,10);
         var pie_labels = data.otu_ids.slice(0,10);
         var pie_hover = data.otu_labels.slice(0,10);
