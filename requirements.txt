@@ -12,4 +12,8 @@ pytz==2018.5
 six==1.11.0
 SQLAlchemy==1.2.10
 Werkzeug==0.14.1
+<<<<<<< HEAD
 gunicorn==19.7.1
+=======
+gunicorn==19.7.1
+>>>>>>> 39a0fbd72599a996a6435976674dbda6e6f812cf
